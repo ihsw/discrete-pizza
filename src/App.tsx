@@ -1,15 +1,8 @@
 import * as React from 'react';
-import { getPizzas } from './Api';
 
 import './App.css';
 
 const logo = require('./logo.svg');
-
-getPizzas().then((result) => {
-  console.log(result);
-}).catch((err) => {
-  console.error(err);
-});
 
 class App extends React.Component {
   render() {
