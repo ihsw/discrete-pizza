@@ -6,4 +6,4 @@ node_js:
 script:
 - npm run -s lint
 - npm run -s test-coverage
-- cat ./coverage/lcov.info | npm run -s coverall
+- cat ./coverage/lcov.info | npm run -s coveralls
