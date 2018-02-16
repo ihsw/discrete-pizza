@@ -99,7 +99,11 @@
       "ts-jest": {
         "tsConfigFile": "/home/adrian/sites/discrete-pizza/tsconfig.test.json"
       }
-    }
+    },
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "registerServiceWorker.ts"
+    ]
   },
   "babel": {
     "presets": [
