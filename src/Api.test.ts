@@ -1,5 +1,10 @@
-import { apiEndpoint } from './Api';
+import { apiEndpoint, getPizzas } from './Api';
 
-it('Queries the api', () => {
+it('Has an api endpoint', () => {
     expect(apiEndpoint.length).toBeGreaterThan(0);
+});
+
+it('Queries the api', async () => {
+    const pizzas = await getPizzas();
+    expect(pizzas).toBeTruthy();
 });

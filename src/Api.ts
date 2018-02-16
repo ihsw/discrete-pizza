@@ -10,23 +10,21 @@ export const client = new ApolloClient({
 });
 
 export const getPizzas = () => {
-    const query = gql`
-    {
-        pizzaSizes {
-          name,
-          basePrice
-          maxToppings,
-          toppings {
-            topping {
+    return client.query({
+        query: gql`
+        {
+            pizzaSizes {
               name,
-              price
+              basePrice
+              maxToppings,
+              toppings {
+                topping {
+                  name,
+                  price
+                }
+              }
             }
           }
-        }
-      }
-    `;
-    console.log(query);
-    return client.query({
-        query: query
+        `
     });
 };
