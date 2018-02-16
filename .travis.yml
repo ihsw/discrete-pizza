@@ -4,6 +4,8 @@ node_js:
 - 9
 
 script:
+- pwd
+- ls -liah
 - npm run -s lint
 - npm run -s test-coverage
 - cat ./coverage/lcov.info | npm run -s coverall
