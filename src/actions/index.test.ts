@@ -1,12 +1,10 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { SchemaLink } from 'apollo-link-schema';
-import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
 
 import { RequestPizzaSizes, ReceivePizzaSizes, fetchPizzaSizes } from './index';
 import * as constants from '../constants';
 import { StoreState, PizzaSize, PizzaToppingField, PizzaTopping } from '../types';
-import { Api } from '../Api';
+import { getTestApi } from '../Api';
 
 const mockStoreCreator = configureStore([thunk]);
 
@@ -53,13 +51,7 @@ describe('Actions', () => {
                 pizzaSizes: () => mockPizzaSizes
             })
         };
-        const schema = makeExecutableSchema({ typeDefs });
-        addMockFunctionsToSchema({
-            schema,
-            mocks,
-            preserveResolvers: true
-        });
-        const api = new Api(new SchemaLink({ schema }));
+        const api = getTestApi(typeDefs, mocks);
 
         const expectedActions = [
             <RequestPizzaSizes> { type: constants.REQUEST_PIZZA_SIZES },

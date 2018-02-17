@@ -3,19 +3,13 @@ import { HttpLink } from 'apollo-link-http';
 import { SchemaLink } from 'apollo-link-schema';
 import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
 import gql from 'graphql-tag';
+import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
 
 import { GetPizzaSizesData } from './types';
 
 export const apiEndpoint = 'https://core-graphql.dev.waldo.photos/pizza';
 
 type LinkType = HttpLink | SchemaLink;
-
-export const getClient = (link: LinkType): ApolloClient<NormalizedCacheObject> => {
-  return new ApolloClient({
-    link,
-    cache: new InMemoryCache()
-  });
-};
 
 export class Api {
   client: ApolloClient<NormalizedCacheObject>;
@@ -52,3 +46,8 @@ export class Api {
 }
 
 export const getDefaultApi = (): Api => new Api(new HttpLink({uri: apiEndpoint}));
+export const getTestApi = (typeDefs: string, mocks: any): Api => {
+  const schema = makeExecutableSchema({ typeDefs });
+  addMockFunctionsToSchema({ schema, mocks });
+  return new Api(new SchemaLink({ schema }));
+};
