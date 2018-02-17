@@ -17,8 +17,6 @@ export const getClient = (link: LinkType): ApolloClient<NormalizedCacheObject> =
   });
 };
 
-export const getDefaultApi = (): Api => new Api(new HttpLink({uri: apiEndpoint}));
-
 export class Api {
   client: ApolloClient<NormalizedCacheObject>;
 
@@ -52,3 +50,5 @@ export class Api {
     return <GetPizzaSizesData> result.data;
   }
 }
+
+export const getDefaultApi = (): Api => new Api(new HttpLink({uri: apiEndpoint}));
