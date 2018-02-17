@@ -68,7 +68,7 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "src/**/*.{ts,tsx}"
+      "src/**/*.{js,jsx,ts,tsx}"
     ],
     "setupFiles": [
       "<rootDir>/config/polyfills.js"
@@ -111,8 +111,11 @@
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "registerServiceWorker.ts",
-      "index.tsx"
-    ]
+      "registerServiceWorker.js",
+      "index.tsx",
+      "index.js"
+    ],
+    "mapCoverage": true
   },
   "babel": {
     "presets": [
