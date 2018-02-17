@@ -16,7 +16,7 @@ export interface ReceivePizzaSizes {
     data: GetPizzaSizesData;
 }
 
-export type FetchPizzaSizes = RequestPizzaSizes | ReceivePizzaSizes;
+export type FetchPizzaSizesAction = RequestPizzaSizes | ReceivePizzaSizes;
 
 export const requestPizzaSizes = (): RequestPizzaSizes => {
     return {
@@ -32,7 +32,7 @@ export const receivePizzaSizes = (data: GetPizzaSizesData): ReceivePizzaSizes =>
 };
 
 export const fetchPizzaSizes = (api: Api) => {
-    return (dispatch: Dispatch<FetchPizzaSizes>) => {
+    return (dispatch: Dispatch<FetchPizzaSizesAction>) => {
         dispatch(requestPizzaSizes());
         return api.getPizzaSizes()
             .then((res) => dispatch(receivePizzaSizes(res)));
