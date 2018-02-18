@@ -8,10 +8,14 @@ import { PizzaSizes } from './PizzaSizes';
 configure({ adapter: new Adapter() });
 
 describe('PizzaSizes', () => {
-    it('Renders correctly', () => {
-        const spy = sinon.spy();
-        const pizzaSizes = shallow(<PizzaSizes name="Adrian" fetchPizzaSizes={spy} />);
+    it('Has proper greeting', () => {
+        const pizzaSizes = shallow(<PizzaSizes name="Adrian" fetchPizzaSizes={() => { return; }} />);
         expect(pizzaSizes.find('.greeting').text()).toEqual('Hello, Adrian');
+    });
+
+    it('Calls fetchPizzaSizes after mounting', () => {
+        const spy = sinon.spy();
+        shallow(<PizzaSizes name="Adrian" fetchPizzaSizes={spy} />);
         expect(spy.calledOnce).toBe(true);
     });
 });

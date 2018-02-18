@@ -1,4 +1,6 @@
-import { getTestApi, apiEndpoint } from './Api';
+import * as fetchMock from 'fetch-mock';
+
+import { getPizzaSizes, apiEndpoint } from './Api';
 import { PizzaSize, PizzaToppingField, PizzaTopping } from './types';
 
 describe('Api', () => {
@@ -7,28 +9,6 @@ describe('Api', () => {
     });
     
     it('Queries the api', async () => {
-        const typeDefs = `
-        type Topping {
-            name: String
-            price: Float
-        }
-        type ToppingField {
-            defaultSelected: Boolean
-            topping: Topping
-        }
-        type PizzaSize {
-            name: String
-            basePrice: Float
-            maxToppings: Int
-            toppings: [ToppingField]
-        }
-        type Query {
-            pizzaSizes: [PizzaSize]
-        }
-        schema {
-            query: Query
-        }
-        `;
         const mockPizzaSizes = [<PizzaSize> {
             name: 'ayy',
             basePrice: 99,
@@ -43,14 +23,12 @@ describe('Api', () => {
                 }
             ]
         }];
-        const mocks = {
-            Query: () => ({
-                pizzaSizes: () => mockPizzaSizes
-            })
-        };
-        const api = getTestApi(typeDefs, mocks);
+        fetchMock.post('*', {
+            headers: { 'content-type': 'application/json' },
+            body: { data: { pizzaSizes: mockPizzaSizes } }
+        });
 
-        const data = await api.getPizzaSizes();
+        const data = await getPizzaSizes();
         expect(data.pizzaSizes).toMatchObject(mockPizzaSizes);
     });
 });

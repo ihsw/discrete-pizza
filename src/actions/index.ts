@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 
-import { Api } from '../Api';
+import { getPizzaSizes } from '../Api';
 import { 
     REQUEST_PIZZA_SIZES,
     RECEIVE_PIZZA_SIZES
@@ -31,10 +31,10 @@ export const receivePizzaSizes = (data: GetPizzaSizesData): ReceivePizzaSizes =>
     };
 };
 
-export const fetchPizzaSizes = (api: Api) => {
+export const fetchPizzaSizes = () => {
     return (dispatch: Dispatch<FetchPizzaSizesAction>) => {
         dispatch(requestPizzaSizes());
-        return api.getPizzaSizes()
+        return getPizzaSizes()
             .then((res) => dispatch(receivePizzaSizes(res)));
     };
 };
