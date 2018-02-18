@@ -6,7 +6,7 @@
 ## Features
 
 - [x] React front-end
-- [ ] Redux state management
+- [x] Redux state management
 - [x] Unit test reporting
 - [x] Test coverage reporting
 - [x] Automated unit testing
