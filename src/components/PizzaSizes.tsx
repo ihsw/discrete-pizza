@@ -4,7 +4,7 @@ import { PizzaSize } from '../types';
 
 export interface Props {
     name: string;
-    fetchPizzaSizes: () => void;
+    fetchPizzaSizes?: () => void;
     loading?: boolean;
     pizzaSizes?: PizzaSize[];
 }
@@ -12,16 +12,23 @@ export interface Props {
 export class PizzaSizes extends React.Component<Props> {
     static defaultProps: Partial<Props> = {
         loading: false,
-        pizzaSizes: []
+        pizzaSizes: [],
+        fetchPizzaSizes: () => { return; }
     };
 
     componentDidMount() {
+        if (!this.props.fetchPizzaSizes) {
+            return;
+        }
+
         this.props.fetchPizzaSizes();
     }
 
     render() {
-        return (
-            <div className="greeting">Hello, {this.props.name}</div>
-        );
+        if (this.props.loading) {
+            return <div className="loading">Loading...</div>;
+        }
+
+        return <div className="greeting">Hello, {this.props.name}</div>;
     }
 }
