@@ -5,15 +5,18 @@ import { requestPizzaSizes, receivePizzaSizes } from '../actions';
 describe('Reducer', () => {
     it('Handles request action properly', () => {
         let state: StoreState = {
-            pizzaSizes: []
+            pizzaSizes: [],
+            loading: false
         };
         state = pizzaSizes(state, requestPizzaSizes());
+        expect(state.loading).toBe(true);
         expect(state.pizzaSizes.length).toBe(0);
     });
 
     it('Handles receive action properly', () => {
         let state: StoreState = {
-            pizzaSizes: []
+            pizzaSizes: [],
+            loading: false
         };
         state = pizzaSizes(state, receivePizzaSizes({
             pizzaSizes: [<PizzaSize> {
@@ -31,6 +34,7 @@ describe('Reducer', () => {
                 ]
             }]
         }));
+        expect(state.loading).toBe(false);
         expect(state.pizzaSizes.length).toBe(1);
     });
 });

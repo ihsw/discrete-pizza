@@ -1,5 +1,6 @@
 export interface StoreState {
-    pizzaSizes: Object[];
+    pizzaSizes: PizzaSize[];
+    loading: boolean;
 }
 
 export interface GetPizzaSizesData {
