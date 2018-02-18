@@ -1,4 +1,4 @@
-import configureStore from 'redux-mock-store';
+import configureStore, { MockStore } from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
 import { RequestPizzaSizes, ReceivePizzaSizes, fetchPizzaSizes } from './index';
@@ -6,7 +6,7 @@ import * as constants from '../constants';
 import { StoreState, PizzaSize, PizzaToppingField, PizzaTopping } from '../types';
 import { getTestApi } from '../Api';
 
-const mockStoreCreator = configureStore([thunk]);
+const mockStoreCreator = configureStore<StoreState>([thunk]);
 
 describe('Actions', () => {
     it('Creates request/receive actions when fetching pizza sizes', () => {
@@ -59,7 +59,7 @@ describe('Actions', () => {
                 pizzaSizes: mockPizzaSizes
             }}
         ];
-        const store = mockStoreCreator(<StoreState> { pizzaSizes: [] });
+        const store: MockStore<StoreState> = mockStoreCreator(<StoreState> { pizzaSizes: [], loading: false });
 
         return store.dispatch(fetchPizzaSizes(api)).then(() => {
             expect(store.getActions()).toMatchObject(expectedActions);
