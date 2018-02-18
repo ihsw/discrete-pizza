@@ -1,5 +1,5 @@
 import { pizzaSizes } from './index';
-import { StoreState, GetPizzaSizesData, PizzaSize, PizzaToppingField, PizzaTopping } from '../types';
+import { StoreState, PizzaSize, PizzaToppingField, PizzaTopping } from '../types';
 import { requestPizzaSizes, receivePizzaSizes } from '../actions';
 
 describe('Reducer', () => {
