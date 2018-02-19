@@ -15,3 +15,6 @@ export type DECREMENT_TOPPING_QUANTITY = typeof DECREMENT_TOPPING_QUANTITY;
 
 export const ADD_PIZZA = 'ADD_PIZZA';
 export type ADD_PIZZA = typeof ADD_PIZZA;
+
+export const REMOVE_PIZZA = 'REMOVE_PIZZA';
+export type REMOVE_PIZZA = typeof REMOVE_PIZZA;

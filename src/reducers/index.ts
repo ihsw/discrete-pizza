@@ -5,7 +5,8 @@ import {
     SELECT_PIZZA_SIZE,
     INCREMENT_TOPPING_QUANTITY,
     DECREMENT_TOPPING_QUANTITY,
-    ADD_PIZZA
+    ADD_PIZZA,
+    REMOVE_PIZZA
 } from '../constants';
 import { StoreState, SelectedPizzaTopping, SelectedPizza } from '../types';
 
@@ -59,14 +60,23 @@ export const pizzaSizes = (state: StoreState, action: PizzaSizeAction): StoreSta
 
             return { ...state, selectedPizzaToppings: decremented };
         case ADD_PIZZA:
-            const pizzas = state.pizzas ? state.pizzas : [];
+            const addingPizzas = state.pizzas ? state.pizzas : [];
 
             const addedPizzas: SelectedPizza[] = [
-                ...pizzas,
+                ...addingPizzas,
                 action.pizza
             ];
 
             return { ...state, pizzas: addedPizzas, currentPizzaSize: null, selectedPizzaToppings: [] };
+        case REMOVE_PIZZA:
+            const removingPizzas: SelectedPizza[] = state.pizzas
+                ? [
+                    ...state.pizzas.slice(0, action.index),
+                    ...state.pizzas.slice(action.index + 1)
+                ]
+                : [];
+
+            return { ...state, pizzas: removingPizzas };
         default:
             return state;
     }

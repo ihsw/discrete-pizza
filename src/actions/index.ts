@@ -7,7 +7,8 @@ import {
     SELECT_PIZZA_SIZE,
     INCREMENT_TOPPING_QUANTITY,
     DECREMENT_TOPPING_QUANTITY,
-    ADD_PIZZA
+    ADD_PIZZA,
+    REMOVE_PIZZA
 } from '../constants';
 import { GetPizzaSizesData, PizzaSize, SelectedPizza } from '../types';
 
@@ -93,8 +94,21 @@ export const addPizza = (pizza: SelectedPizza): AddPizza => {
     };
 };
 
+export interface RemovePizza {
+    type: REMOVE_PIZZA;
+    index: number;
+}
+
+export const removePizza = (index: number): RemovePizza => {
+    return {
+        type: REMOVE_PIZZA,
+        index
+    };
+};
+
 export type PizzaSizeAction = FetchPizzaSize
     | SelectPizzaSize
     | IncrementToppingQuantity
     | DecrementToppingQuantity
-    | AddPizza;
+    | AddPizza
+    | RemovePizza;

@@ -8,6 +8,7 @@ export interface StateProps {
 }
 
 export interface DispatchProps {
+    removePizza: (index: number) => void;
 }
 
 export interface OwnProps {
@@ -18,7 +19,9 @@ type Props = StateProps & DispatchProps & OwnProps;
 export class Cart extends React.Component<Props> {
     renderTopping(topping: SelectedPizzaTopping, i: number) {
         return (
-            <li key={i}>{topping.topping.name} x{topping.quantity}</li>
+            <li key={i}>
+                {topping.topping.name} x{topping.quantity}
+            </li>
         );
     }
 
@@ -28,6 +31,7 @@ export class Cart extends React.Component<Props> {
                 key={i}
             >
                 Size: {pizza.size.name} (${totalizePizza(pizza).toFixed(2)})
+                <button type="button" onClick={() => this.props.removePizza(i)}>Remove</button>
                 <ul>
                     {pizza.toppings.map((topping, toppingIndex) => this.renderTopping(topping, toppingIndex))}
                 </ul>
@@ -36,7 +40,7 @@ export class Cart extends React.Component<Props> {
     }
 
     renderPizzas(pizzas?: SelectedPizza[] | null) {
-        if (!pizzas) {
+        if (typeof pizzas === 'undefined' || pizzas === null || pizzas.length === 0) {
             return <p>No pizzas in cart!</p>;
         }
 
