@@ -38,6 +38,31 @@ export class PizzaSizes extends React.Component<Props> {
         this.props.fetchPizzaSizes();
     }
 
+    canIncrement(topping: SelectedPizzaTopping) {
+        const currentPizza = this.props.currentPizzaSize;
+        if (!currentPizza) {
+            return false;
+        }
+
+        const selectedToppings = this.props.selectedPizzaToppings;
+        if (!selectedToppings) {
+            return false;
+        }
+
+        const toppingQuantity = selectedToppings.reduce(
+            (reducingQuantity: number, reducingTopping: SelectedPizzaTopping) => {
+                return reducingQuantity + reducingTopping.quantity;
+            },
+            0
+        );
+
+        return toppingQuantity < currentPizza.maxToppings;
+    }
+
+    canDecrement(topping: SelectedPizzaTopping) {
+        return topping.quantity > 0;
+    }
+
     renderSizeItem(size: PizzaSize, i: number) {
         return (
             <li
@@ -55,8 +80,20 @@ export class PizzaSizes extends React.Component<Props> {
                 key={i}
             >
                 Topping: {topping.topping.name} x{topping.quantity}
-                <button type="button" onClick={() => this.props.incrementToppingQuantity(i)}>+</button>
-                <button type="button" onClick={() => this.props.decrementToppingQuantity(i)}>-</button>
+                <button
+                    type="button"
+                    onClick={() => this.props.incrementToppingQuantity(i)}
+                    disabled={!this.canIncrement(topping)}
+                >
+                    +
+                </button>
+                <button
+                    type="button"
+                    onClick={() => this.props.decrementToppingQuantity(i)}
+                    disabled={!this.canDecrement(topping)}
+                >
+                    -
+                </button>
             </li>
         );
     }
