@@ -1,7 +1,13 @@
 import { connect, Dispatch } from 'react-redux';
 
 import { PizzaSizes, StateProps, DispatchProps, OwnProps } from '../components/PizzaSizes';
-import { FetchPizzaSize, fetchPizzaSizes, selectPizzaSize } from '../actions';
+import {
+    FetchPizzaSize,
+    fetchPizzaSizes,
+    selectPizzaSize,
+    incrementToppingQuantity,
+    decrementToppingQuantity
+} from '../actions';
 import { StoreState, PizzaSize } from '../types';
 
 export const mapStateToProps = (state: StoreState): StateProps => {
@@ -17,7 +23,9 @@ export const mapStateToProps = (state: StoreState): StateProps => {
 export const mapDispatchToProps = (dispatch: Dispatch<FetchPizzaSize>): DispatchProps => {
     return {
         fetchPizzaSizes: () => dispatch(fetchPizzaSizes()),
-        selectPizzaSize: (size: PizzaSize) => dispatch(selectPizzaSize(size))
+        selectPizzaSize: (size: PizzaSize) => dispatch(selectPizzaSize(size)),
+        incrementToppingQuantity: (index: number) => dispatch(incrementToppingQuantity(index)),
+        decrementToppingQuantity: (index: number) => dispatch(decrementToppingQuantity(index))
     };
 };
 

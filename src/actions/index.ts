@@ -4,7 +4,9 @@ import { getPizzaSizes } from '../Api';
 import { 
     REQUEST_PIZZA_SIZES,
     RECEIVE_PIZZA_SIZES,
-    SELECT_PIZZA_SIZE
+    SELECT_PIZZA_SIZE,
+    INCREMENT_TOPPING_QUANTITY,
+    DECREMENT_TOPPING_QUANTITY
 } from '../constants';
 import { GetPizzaSizesData, PizzaSize } from '../types';
 
@@ -52,4 +54,31 @@ export const selectPizzaSize = (size: PizzaSize): SelectPizzaSize => {
     };
 };
 
-export type PizzaSizeAction = FetchPizzaSize | SelectPizzaSize;
+export interface IncrementToppingQuantity {
+    type: INCREMENT_TOPPING_QUANTITY;
+    index: number;
+}
+
+export const incrementToppingQuantity = (index: number): IncrementToppingQuantity => {
+    return {
+        type: INCREMENT_TOPPING_QUANTITY,
+        index
+    };
+};
+
+export interface DecrementToppingQuantity {
+    type: DECREMENT_TOPPING_QUANTITY;
+    index: number;
+}
+
+export const decrementToppingQuantity = (index: number): DecrementToppingQuantity => {
+    return {
+        type: DECREMENT_TOPPING_QUANTITY,
+        index
+    };
+};
+
+export type PizzaSizeAction = FetchPizzaSize
+    | SelectPizzaSize
+    | IncrementToppingQuantity
+    | DecrementToppingQuantity;

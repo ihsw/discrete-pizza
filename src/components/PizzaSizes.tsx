@@ -12,6 +12,8 @@ export interface StateProps {
 export interface DispatchProps {
     fetchPizzaSizes: () => void;
     selectPizzaSize: (size: PizzaSize) => void;
+    incrementToppingQuantity: (index: number) => void;
+    decrementToppingQuantity: (index: number) => void;
 }
 
 export interface OwnProps {
@@ -52,6 +54,8 @@ export class PizzaSizes extends React.Component<Props> {
                 key={i}
             >
                 Topping: {topping.topping.name} x{topping.quantity}
+                <button type="button" onClick={() => this.props.incrementToppingQuantity(i)}>+</button>
+                <button type="button" onClick={() => this.props.decrementToppingQuantity(i)}>-</button>
             </li>
         );
     }
