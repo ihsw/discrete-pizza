@@ -85,6 +85,8 @@ export interface AddPizza {
 }
 
 export const addPizza = (pizza: SelectedPizza): AddPizza => {
+    pizza.toppings = pizza.toppings.filter((topping) => topping.quantity > 0);
+
     return {
         type: ADD_PIZZA,
         pizza
