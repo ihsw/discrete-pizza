@@ -13,7 +13,7 @@ export interface GetPizzaSizesData {
 export interface PizzaSize {
     name: string;
     basePrice: number;
-    maxToppings: number;
+    maxToppings: number | null;
     toppings: PizzaToppingField[];
 }
 

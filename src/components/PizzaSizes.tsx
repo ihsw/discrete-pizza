@@ -44,6 +44,10 @@ export class PizzaSizes extends React.Component<Props> {
             return false;
         }
 
+        if (currentPizza.maxToppings === null) {
+            return true;
+        }
+
         const selectedToppings = this.props.selectedPizzaToppings;
         if (!selectedToppings) {
             return false;
