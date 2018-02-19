@@ -66,7 +66,7 @@ export const pizzaSizes = (state: StoreState, action: PizzaSizeAction): StoreSta
                 action.pizza
             ];
 
-            return { ...state, pizzas: addedPizzas };
+            return { ...state, pizzas: addedPizzas, currentPizzaSize: null, selectedPizzaToppings: [] };
         default:
             return state;
     }
