@@ -19,6 +19,7 @@ describe('PizzaSizes', () => {
                 currentPizzaSize={null}
                 incrementToppingQuantity={() => { return; }}
                 decrementToppingQuantity={() => { return; }}
+                addPizza={() => { return; }}
             />
         ));
         expect(pizzaSizes.find('.greeting').text()).toEqual('Hello, Adrian');
@@ -36,6 +37,7 @@ describe('PizzaSizes', () => {
                 currentPizzaSize={null}
                 incrementToppingQuantity={() => { return; }}
                 decrementToppingQuantity={() => { return; }}
+                addPizza={() => { return; }}
             />
         ));
         expect(spy.calledOnce).toBe(true);
@@ -52,6 +54,7 @@ describe('PizzaSizes', () => {
                 currentPizzaSize={null}
                 incrementToppingQuantity={() => { return; }}
                 decrementToppingQuantity={() => { return; }}
+                addPizza={() => { return; }}
             />
         ));
         expect(pizzaSizes.find('.greeting').length).toEqual(0);
@@ -75,6 +78,7 @@ describe('PizzaSizes', () => {
                 currentPizzaSize={null}
                 incrementToppingQuantity={() => { return; }}
                 decrementToppingQuantity={() => { return; }}
+                addPizza={() => { return; }}
             />
         ));
         pizzaSizes.find('.pizza-size button').first().simulate('click');

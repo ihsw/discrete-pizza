@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { PizzaSize, SelectedPizzaTopping } from '../types';
+import { PizzaSize, SelectedPizzaTopping, SelectedPizza } from '../types';
 
 export interface StateProps {
     loading: boolean;
@@ -14,6 +14,7 @@ export interface DispatchProps {
     selectPizzaSize: (size: PizzaSize) => void;
     incrementToppingQuantity: (index: number) => void;
     decrementToppingQuantity: (index: number) => void;
+    addPizza: (pizza: SelectedPizza) => void;
 }
 
 export interface OwnProps {
@@ -77,9 +78,22 @@ export class PizzaSizes extends React.Component<Props> {
             return <p>Please select a pizza size.</p>;
         }
 
+        const toppings = this.props.selectedPizzaToppings ? this.props.selectedPizzaToppings : [];
+
         return (
             <div>
-                <p>Current size: {size.name}</p>
+                <p>
+                    Current size: {size.name}
+                    <button
+                        type="button"
+                        onClick={() => this.props.addPizza({
+                            size,
+                            toppings: toppings
+                        })}
+                    >
+                        Add
+                    </button>
+                </p>
                 {this.renderSelectedToppings(this.props.selectedPizzaToppings)}
             </div>
         );

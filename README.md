@@ -12,12 +12,12 @@
 - [x] Automated unit testing
 - [x] Automated coverage reporting
 - [x] Query pizza configurations on application initialization
-- [ ] List pizza sizes for user to select
-- [ ] List pizza toppings for user to select (after selecting a pizza)
+- [x] List pizza sizes for user to select
+- [x] List pizza toppings for user to select (after selecting a pizza)
 - [ ] List cart
 - [ ] Add pizza to cart
 - [ ] Remove pizza from cart
 - [ ] Display list of checkboxes for toppings per pizza
 - [ ] Restrict number of toppings according to each pizza size (some sizes support unrestricted number of toppings)
 - [ ] Cost per pizza should be displayed in card, summing base pizza cost and toppings
-- [ ] Total cost should be displayed in card
+- [ ] Total cost should be displayed in cart

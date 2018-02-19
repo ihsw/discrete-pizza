@@ -6,9 +6,10 @@ import {
     fetchPizzaSizes,
     selectPizzaSize,
     incrementToppingQuantity,
-    decrementToppingQuantity
+    decrementToppingQuantity,
+    addPizza
 } from '../actions';
-import { StoreState, PizzaSize } from '../types';
+import { StoreState, PizzaSize, SelectedPizza } from '../types';
 
 export const mapStateToProps = (state: StoreState): StateProps => {
     const { loading, pizzaSizes, currentPizzaSize, selectedPizzaToppings } = state;
@@ -25,7 +26,8 @@ export const mapDispatchToProps = (dispatch: Dispatch<FetchPizzaSize>): Dispatch
         fetchPizzaSizes: () => dispatch(fetchPizzaSizes()),
         selectPizzaSize: (size: PizzaSize) => dispatch(selectPizzaSize(size)),
         incrementToppingQuantity: (index: number) => dispatch(incrementToppingQuantity(index)),
-        decrementToppingQuantity: (index: number) => dispatch(decrementToppingQuantity(index))
+        decrementToppingQuantity: (index: number) => dispatch(decrementToppingQuantity(index)),
+        addPizza: (pizza: SelectedPizza) => dispatch(addPizza(pizza))
     };
 };
 
