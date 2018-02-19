@@ -34,7 +34,7 @@ export const pizzaSizes = (state: StoreState, action: PizzaSizeAction): StoreSta
             }
 
             const incrementingTopping = state.selectedPizzaToppings[action.index];
-            incrementingTopping.quantity += 1;
+            incrementingTopping.quantity++;
 
             const incremented: SelectedPizzaTopping[] = [
                 ...state.selectedPizzaToppings.slice(0, action.index),
@@ -49,7 +49,7 @@ export const pizzaSizes = (state: StoreState, action: PizzaSizeAction): StoreSta
             }
 
             const decrementingTopping = state.selectedPizzaToppings[action.index];
-            decrementingTopping.quantity += 1;
+            decrementingTopping.quantity--;
 
             const decremented: SelectedPizzaTopping[] = [
                 ...state.selectedPizzaToppings.slice(0, action.index),
