@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 
 import { pizzaSizes } from './reducers';
 import { StoreState } from './types';
-import PizzaSizes from './containers/PizzaSizes';
+import { App } from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 
 import './index.css';
@@ -20,7 +20,7 @@ const store = createStore<StoreState>(pizzaSizes, preloadedState, applyMiddlewar
 
 ReactDOM.render(
   <Provider store={store}>
-    <PizzaSizes name="Adrian" />
+    <App />
   </Provider>,
   document.getElementById('root') as HTMLElement
 );
