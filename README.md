@@ -14,8 +14,8 @@
 - [x] Query pizza configurations on application initialization
 - [x] List pizza sizes for user to select
 - [x] List pizza toppings for user to select (after selecting a pizza)
-- [ ] List cart
-- [ ] Add pizza to cart
+- [x] List cart
+- [x] Add pizza to cart
 - [ ] Remove pizza from cart
 - [ ] Display list of checkboxes for toppings per pizza
 - [ ] Restrict number of toppings according to each pizza size (some sizes support unrestricted number of toppings)
