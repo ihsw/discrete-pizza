@@ -79,11 +79,13 @@ export class PizzaSizes extends React.Component<Props> {
     }
 
     renderSelectedTopping(topping: SelectedPizzaTopping, i: number) {
+        const cost = topping.topping.price * topping.quantity;
+
         return (
             <li
                 key={i}
             >
-                Topping: {topping.topping.name} x{topping.quantity}
+                Topping: {topping.topping.name} (${cost.toFixed(2)}) x{topping.quantity}
                 <button
                     type="button"
                     onClick={() => this.props.incrementToppingQuantity(i)}
@@ -120,6 +122,10 @@ export class PizzaSizes extends React.Component<Props> {
         }
 
         const toppings = this.props.selectedPizzaToppings ? this.props.selectedPizzaToppings : [];
+        const totalCost = toppings.reduce(
+            (basePrice, topping) => basePrice + topping.quantity * topping.topping.price,
+            size.basePrice
+        );
 
         return (
             <div>
@@ -136,6 +142,7 @@ export class PizzaSizes extends React.Component<Props> {
                     </button>
                 </p>
                 {this.renderSelectedToppings(this.props.selectedPizzaToppings)}
+                <p>Total cost: ${totalCost.toFixed(2)}</p>
             </div>
         );
     }
