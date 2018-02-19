@@ -5,12 +5,12 @@ import { PizzaSize, PizzaToppingField } from '../types';
 export interface StateProps {
     loading: boolean;
     pizzaSizes: PizzaSize[];
-    currentPizzaSize: PizzaSize | null;
+    currentPizzaSize?: PizzaSize | null;
 }
 
 export interface DispatchProps {
     fetchPizzaSizes: () => void;
-    selectPizzaSize: (i: number) => void;
+    selectPizzaSize: (size: PizzaSize) => void;
 }
 
 export interface OwnProps {
@@ -40,7 +40,7 @@ export class PizzaSizes extends React.Component<Props> {
                 key={i}
                 className="pizza-size"                
             >
-                Size: <button type="button" onClick={() => this.props.selectPizzaSize(i)}>{size.name}</button>
+                Size: <button type="button" onClick={() => this.props.selectPizzaSize(size)}>{size.name}</button>
             </li>
         );
     }
@@ -55,12 +55,10 @@ export class PizzaSizes extends React.Component<Props> {
         );
     }
 
-    renderSize(size: PizzaSize | null) {
+    renderSize(size?: PizzaSize | null) {
         if (!size) {
             return <p>Please select a pizza size.</p>;
         }
-
-        console.log(size);
 
         return (
             <div>

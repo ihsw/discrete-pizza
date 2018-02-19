@@ -6,7 +6,7 @@ import {
     RECEIVE_PIZZA_SIZES,
     SELECT_PIZZA_SIZE
 } from '../constants';
-import { GetPizzaSizesData } from '../types';
+import { GetPizzaSizesData, PizzaSize } from '../types';
 
 export interface RequestPizzaSizes {
     type: REQUEST_PIZZA_SIZES;
@@ -42,13 +42,13 @@ export const fetchPizzaSizes = () => {
 
 export interface SelectPizzaSize {
     type: SELECT_PIZZA_SIZE;
-    index: number;
+    size: PizzaSize;
 }
 
-export const selectPizzaSize = (index: number): SelectPizzaSize => {
+export const selectPizzaSize = (size: PizzaSize): SelectPizzaSize => {
     return {
         type: SELECT_PIZZA_SIZE,
-        index
+        size
     };
 };
 

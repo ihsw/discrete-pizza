@@ -13,7 +13,7 @@ export const pizzaSizes = (state: StoreState, action: PizzaSizeAction): StoreSta
         case RECEIVE_PIZZA_SIZES:
             return { ...state, loading: false, pizzaSizes: action.data.pizzaSizes };
         case SELECT_PIZZA_SIZE:
-            return { ...state, currentSizeIndex: action.index };
+            return { ...state, currentPizzaSize: action.size };
         default:
             return state;
     }
