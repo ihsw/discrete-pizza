@@ -17,7 +17,7 @@
 - [x] List cart
 - [x] Add pizza to cart
 - [ ] Remove pizza from cart
-- [ ] Display list of checkboxes for toppings per pizza
-- [ ] Restrict number of toppings according to each pizza size (some sizes support unrestricted number of toppings)
-- [ ] Cost per pizza should be displayed in card, summing base pizza cost and toppings
-- [ ] Total cost should be displayed in cart
+- [x] Display list of toggles for toppings per pizza
+- [x] Restrict number of toppings according to each pizza size (some sizes support unrestricted number of toppings)
+- [x] Cost per pizza should be displayed in cart, summing base pizza cost and toppings
+- [x] Total cost should be displayed in cart
