@@ -31,9 +31,12 @@ export class Cart extends React.Component<Props> {
         }
         
         return (
-            <ul>
-                {pizzas.map((pizza, i) => this.renderPizza(pizza, i))}
-            </ul>
+            <div>
+                <p>Shopping Cart</p>
+                <ul>
+                    {pizzas.map((pizza, i) => this.renderPizza(pizza, i))}
+                </ul>
+            </div>
         );
     }
 

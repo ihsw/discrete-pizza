@@ -73,7 +73,8 @@ export class PizzaSizes extends React.Component<Props> {
                 key={i}
                 className="pizza-size"                
             >
-                Size: <button type="button" onClick={() => this.props.selectPizzaSize(size)}>{size.name}</button>
+                Size (${size.basePrice.toFixed(2)}):
+                <button type="button" onClick={() => this.props.selectPizzaSize(size)}>{size.name}</button>
             </li>
         );
     }
@@ -127,22 +128,24 @@ export class PizzaSizes extends React.Component<Props> {
             size.basePrice
         );
 
+        const maxToppings = size.maxToppings ? size.maxToppings : 'infinite';
+
         return (
             <div>
                 <p>
-                    Current size: {size.name}
-                    <button
-                        type="button"
-                        onClick={() => this.props.addPizza({
-                            size,
-                            toppings: toppings
-                        })}
-                    >
-                        Add
-                    </button>
+                    Current size: {size.name} (max toppings: {maxToppings})
                 </p>
                 {this.renderSelectedToppings(this.props.selectedPizzaToppings)}
                 <p>Total cost: ${totalCost.toFixed(2)}</p>
+                <button
+                    type="button"
+                    onClick={() => this.props.addPizza({
+                        size,
+                        toppings: toppings
+                    })}
+                >
+                   Add to cart
+                </button>
             </div>
         );
     }
@@ -156,9 +159,11 @@ export class PizzaSizes extends React.Component<Props> {
             <div>
                 <p className="greeting">Hello, {this.props.name}</p>
                 <p className="pizza-sizes">There are {this.props.pizzaSizes.length} pizza sizes.</p>
+                <hr />
                 <ul>
                     {this.props.pizzaSizes.map((size, i) => this.renderSizeItem(size, i))}
                 </ul>
+                <hr />
                 {this.renderSize(this.props.currentPizzaSize)}
             </div>
         );
