@@ -16,7 +16,7 @@
 - [x] List pizza toppings for user to select (after selecting a pizza)
 - [x] List cart
 - [x] Add pizza to cart
-- [ ] Remove pizza from cart
+- [x] Remove pizza from cart
 - [x] Display list of toggles for toppings per pizza
 - [x] Restrict number of toppings according to each pizza size (some sizes support unrestricted number of toppings)
 - [x] Cost per pizza should be displayed in cart, summing base pizza cost and toppings
