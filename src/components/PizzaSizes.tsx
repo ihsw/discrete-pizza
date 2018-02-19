@@ -1,11 +1,12 @@
 import * as React from 'react';
 
-import { PizzaSize, PizzaToppingField } from '../types';
+import { PizzaSize, SelectedPizzaTopping } from '../types';
 
 export interface StateProps {
     loading: boolean;
     pizzaSizes: PizzaSize[];
     currentPizzaSize?: PizzaSize | null;
+    selectedPizzaToppings?: SelectedPizzaTopping[] | null;
 }
 
 export interface DispatchProps {
@@ -45,13 +46,25 @@ export class PizzaSizes extends React.Component<Props> {
         );
     }
 
-    renderToppingField(topping: PizzaToppingField, i: number) {
+    renderSelectedTopping(topping: SelectedPizzaTopping, i: number) {
         return (
             <li
                 key={i}
             >
-                Topping: {topping.topping.name}
+                Topping: {topping.topping.name} x{topping.quantity}
             </li>
+        );
+    }
+
+    renderSelectedToppings(selectedToppings?: SelectedPizzaTopping[] | null) {
+        if (!selectedToppings) {
+            return <p>This pizza has no toppings!</p>;
+        }
+
+        return (
+            <ul>
+                {selectedToppings.map((selectedTopping, i) => this.renderSelectedTopping(selectedTopping, i))}
+            </ul>
         );
     }
 
@@ -63,9 +76,7 @@ export class PizzaSizes extends React.Component<Props> {
         return (
             <div>
                 <p>Current size: {size.name}</p>
-                <ul>
-                    {size.toppings.map((toppingField, i) => this.renderToppingField(toppingField, i))}
-                </ul>
+                {this.renderSelectedToppings(this.props.selectedPizzaToppings)}
             </div>
         );
     }

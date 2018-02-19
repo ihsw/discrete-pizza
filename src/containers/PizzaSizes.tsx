@@ -4,11 +4,13 @@ import { PizzaSizes, StateProps, DispatchProps, OwnProps } from '../components/P
 import { FetchPizzaSize, fetchPizzaSizes, selectPizzaSize } from '../actions';
 import { StoreState, PizzaSize } from '../types';
 
-export const mapStateToProps = ({ loading, pizzaSizes, currentPizzaSize }: StoreState): StateProps => {
+export const mapStateToProps = (state: StoreState): StateProps => {
+    const { loading, pizzaSizes, currentPizzaSize, selectedPizzaToppings } = state;
     return {
         loading,
         pizzaSizes,
-        currentPizzaSize
+        currentPizzaSize,
+        selectedPizzaToppings
     };
 };
 

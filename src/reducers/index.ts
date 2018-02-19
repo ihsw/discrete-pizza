@@ -4,7 +4,7 @@ import {
     RECEIVE_PIZZA_SIZES,
     SELECT_PIZZA_SIZE
 } from '../constants';
-import { StoreState } from '../types';
+import { StoreState, SelectedPizzaTopping } from '../types';
 
 export const pizzaSizes = (state: StoreState, action: PizzaSizeAction): StoreState => {
     switch (action.type) {
@@ -13,7 +13,18 @@ export const pizzaSizes = (state: StoreState, action: PizzaSizeAction): StoreSta
         case RECEIVE_PIZZA_SIZES:
             return { ...state, loading: false, pizzaSizes: action.data.pizzaSizes };
         case SELECT_PIZZA_SIZE:
-            return { ...state, currentPizzaSize: action.size };
+            const selectedPizzaToppings = action.size.toppings
+                .map((toppingField) => {
+                    return <SelectedPizzaTopping> {
+                        quantity: toppingField.defaultSelected ? 1 : 0,
+                        topping: toppingField.topping
+                    };
+                });
+            return {
+                ...state,
+                currentPizzaSize: action.size,
+                selectedPizzaToppings
+            };
         default:
             return state;
     }

@@ -2,6 +2,7 @@ export interface StoreState {
     pizzaSizes: PizzaSize[];
     loading: boolean;
     currentPizzaSize?: PizzaSize | null;
+    selectedPizzaToppings?: SelectedPizzaTopping[] | null;
 }
 
 export interface GetPizzaSizesData {
@@ -23,4 +24,9 @@ export interface PizzaToppingField {
 export interface PizzaTopping {
     name: string;
     price: number;
+}
+
+export interface SelectedPizzaTopping {
+    quantity: number;
+    topping: PizzaTopping;
 }
