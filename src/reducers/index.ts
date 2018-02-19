@@ -32,17 +32,31 @@ export const pizzaSizes = (state: StoreState, action: PizzaSizeAction): StoreSta
                 return state;
             }
 
-            state.selectedPizzaToppings[action.index].quantity++;
+            const incrementingTopping = state.selectedPizzaToppings[action.index];
+            incrementingTopping.quantity += 1;
 
-            return { ...state };
+            const incremented: SelectedPizzaTopping[] = [
+                ...state.selectedPizzaToppings.slice(0, action.index),
+                incrementingTopping,
+                ...state.selectedPizzaToppings.slice(action.index + 1)
+            ];
+
+            return { ...state, selectedPizzaToppings: incremented };
         case DECREMENT_TOPPING_QUANTITY:
             if (!state.selectedPizzaToppings) {
                 return state;
             }
 
-            state.selectedPizzaToppings[action.index].quantity--;
+            const decrementingTopping = state.selectedPizzaToppings[action.index];
+            decrementingTopping.quantity += 1;
 
-            return { ...state };
+            const decremented: SelectedPizzaTopping[] = [
+                ...state.selectedPizzaToppings.slice(0, action.index),
+                decrementingTopping,
+                ...state.selectedPizzaToppings.slice(action.index + 1)
+            ];
+
+            return { ...state, selectedPizzaToppings: decremented };
         default:
             return state;
     }
