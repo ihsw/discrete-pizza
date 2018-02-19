@@ -1,6 +1,7 @@
 export interface StoreState {
     pizzaSizes: PizzaSize[];
     loading: boolean;
+    currentSizeIndex?: number | null;
 }
 
 export interface GetPizzaSizesData {

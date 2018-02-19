@@ -15,6 +15,8 @@ describe('PizzaSizes', () => {
                 loading={false}
                 pizzaSizes={[]}
                 fetchPizzaSizes={() => { return; }}
+                selectPizzaSize={() => { return; }}
+                currentPizzaSize={null}
             />
         ));
         expect(pizzaSizes.find('.greeting').text()).toEqual('Hello, Adrian');
@@ -28,6 +30,8 @@ describe('PizzaSizes', () => {
                 loading={false}
                 pizzaSizes={[]}
                 fetchPizzaSizes={spy}
+                selectPizzaSize={() => { return; }}
+                currentPizzaSize={null}
             />
         ));
         expect(spy.calledOnce).toBe(true);
@@ -40,9 +44,32 @@ describe('PizzaSizes', () => {
                 loading={true}
                 pizzaSizes={[]}
                 fetchPizzaSizes={() => { return; }}
+                selectPizzaSize={() => { return; }}
+                currentPizzaSize={null}
             />
         ));
         expect(pizzaSizes.find('.greeting').length).toEqual(0);
         expect(pizzaSizes.find('.loading').length).toEqual(1);
+    });
+
+    it('Calls selectPizzaSize when clicking on a size', () => {
+        const spy = sinon.spy();
+        const pizzaSizes = shallow((
+            <PizzaSizes
+                name="Adrian"
+                loading={false}
+                pizzaSizes={[{
+                    name: 'ayy',
+                    basePrice: 9.99,
+                    maxToppings: 1,
+                    toppings: []
+                }]}
+                fetchPizzaSizes={() => { return; }}
+                selectPizzaSize={spy}
+                currentPizzaSize={null}
+            />
+        ));
+        pizzaSizes.find('.pizza-size button').first().simulate('click');
+        expect(spy.calledOnce).toBe(true);
     });
 });

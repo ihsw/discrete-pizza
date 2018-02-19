@@ -1,19 +1,25 @@
 import { connect, Dispatch } from 'react-redux';
 
 import { PizzaSizes, StateProps, DispatchProps, OwnProps } from '../components/PizzaSizes';
-import { FetchPizzaSizesAction, fetchPizzaSizes } from '../actions';
+import { FetchPizzaSize, fetchPizzaSizes, selectPizzaSize } from '../actions';
 import { StoreState } from '../types';
 
-export const mapStateToProps = ({ loading, pizzaSizes }: StoreState): StateProps => {
+export const mapStateToProps = ({ loading, pizzaSizes, currentSizeIndex }: StoreState): StateProps => {
+    let currentPizzaSize = null;
+    if (typeof currentSizeIndex !== 'undefined' && currentSizeIndex !== null) {
+        currentPizzaSize = pizzaSizes[currentSizeIndex];
+    }
     return {
         loading,
-        pizzaSizes
+        pizzaSizes,
+        currentPizzaSize: currentPizzaSize
     };
 };
 
-export const mapDispatchToProps = (dispatch: Dispatch<FetchPizzaSizesAction>): DispatchProps => {
+export const mapDispatchToProps = (dispatch: Dispatch<FetchPizzaSize>): DispatchProps => {
     return {
-        fetchPizzaSizes: () => dispatch(fetchPizzaSizes())
+        fetchPizzaSizes: () => dispatch(fetchPizzaSizes()),
+        selectPizzaSize: (index: number) => dispatch(selectPizzaSize(index))
     };
 };
 

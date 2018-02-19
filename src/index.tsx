@@ -13,7 +13,8 @@ import './index.css';
 
 const preloadedState: StoreState = {
   loading: false,
-  pizzaSizes: []
+  pizzaSizes: [],
+  currentSizeIndex: null
 };
 const store = createStore<StoreState>(pizzaSizes, preloadedState, applyMiddleware(thunk));
 

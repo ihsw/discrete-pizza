@@ -11,7 +11,7 @@
 - [x] Test coverage reporting
 - [x] Automated unit testing
 - [x] Automated coverage reporting
-- [ ] Query pizza configurations on application initialization
+- [x] Query pizza configurations on application initialization
 - [ ] List pizza sizes for user to select
 - [ ] List pizza toppings for user to select (after selecting a pizza)
 - [ ] List cart
