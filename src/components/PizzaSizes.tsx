@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { PizzaSize, SelectedPizzaTopping, SelectedPizza } from '../types';
+import { totalizePizza } from '../helper';
 
 export interface StateProps {
     loading: boolean;
@@ -123,11 +124,6 @@ export class PizzaSizes extends React.Component<Props> {
         }
 
         const toppings = this.props.selectedPizzaToppings ? this.props.selectedPizzaToppings : [];
-        const totalCost = toppings.reduce(
-            (basePrice, topping) => basePrice + topping.quantity * topping.topping.price,
-            size.basePrice
-        );
-
         const maxToppings = size.maxToppings ? size.maxToppings : 'infinite';
 
         return (
@@ -136,13 +132,10 @@ export class PizzaSizes extends React.Component<Props> {
                     Current size: {size.name} (max toppings: {maxToppings})
                 </p>
                 {this.renderSelectedToppings(this.props.selectedPizzaToppings)}
-                <p>Total cost: ${totalCost.toFixed(2)}</p>
+                <p>Cost: ${totalizePizza({ size, toppings }).toFixed(2)}</p>
                 <button
                     type="button"
-                    onClick={() => this.props.addPizza({
-                        size,
-                        toppings: toppings
-                    })}
+                    onClick={() => this.props.addPizza({ size, toppings })}
                 >
                    Add to cart
                 </button>
