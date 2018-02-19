@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { PizzaSize } from '../types';
+import { PizzaSize, PizzaToppingField } from '../types';
 
 export interface StateProps {
     loading: boolean;
@@ -45,14 +45,29 @@ export class PizzaSizes extends React.Component<Props> {
         );
     }
 
+    renderToppingField(topping: PizzaToppingField, i: number) {
+        return (
+            <li
+                key={i}
+            >
+                Topping: {topping.topping.name}
+            </li>
+        );
+    }
+
     renderSize(size: PizzaSize | null) {
         if (!size) {
             return <p>Please select a pizza size.</p>;
         }
 
+        console.log(size);
+
         return (
             <div>
                 <p>Current size: {size.name}</p>
+                <ul>
+                    {size.toppings.map((toppingField, i) => this.renderToppingField(toppingField, i))}
+                </ul>
             </div>
         );
     }
